@@ -1,0 +1,37 @@
+id = "herdr-mru-tabs"
+name = "MRU Tabs"
+version = "0.1.0"
+min_herdr_version = "0.9.3"
+description = "Cycle tabs in most recently used order, with an idle timeout between gestures."
+platforms = ["macos", "linux"]
+
+[[startup]]
+command = ["python3", "mru_tabs.py", "observe"]
+
+[[actions]]
+id = "next"
+title = "Next recently used tab"
+contexts = ["global"]
+command = ["python3", "mru_tabs.py", "next"]
+
+[[actions]]
+id = "previous"
+title = "Previous recently used tab"
+contexts = ["global"]
+command = ["python3", "mru_tabs.py", "previous"]
+
+[[events]]
+on = "tab.focused"
+command = ["python3", "mru_tabs.py", "observe"]
+
+[[events]]
+on = "workspace.focused"
+command = ["python3", "mru_tabs.py", "observe"]
+
+[[events]]
+on = "tab.closed"
+command = ["python3", "mru_tabs.py", "observe"]
+
+[[events]]
+on = "tab.created"
+command = ["python3", "mru_tabs.py", "observe"]
